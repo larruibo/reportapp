@@ -1,16 +1,26 @@
-<form action="/grades/create" method="POST">
+<form action="/reportes/create" method="POST" id="reporteForm">
   <div class="form-group">
-    <label id="name">
-      <span>Name:</span>
-      <input class="form-control" type="text" name="name" required>
+    <label for="date">Fecha:</label>
+    <input type="date" id="date" name="date">
+    <div class="custom-control custom-switch">
+      <input type="checkbox" name="violencia" class="custom-control-input" id="customSwitch1">
+      <label class="custom-control-label" for="customSwitch1">¿Hubo violencia?</label>
+    </div>
+  </div>
+  <div class="form-group">
+    <span>Resumen de lo ocurrido:</span>
+    <textarea name="reporte" form="reporteForm">Ingrese aquí</textarea>
+  </div>
+  <div class="form-group">
+    <label id="latitud">
+      <span>Latitud:</span>
+      <input class="form-control" type="text" name="latitud" required>
     </label>
   </div>
-
   <div class="form-group">
-    <label id="grade">
-      <span>Grade:</span>
-      <input class="form-control" type="range" min="-1" max="2" step="1" value="0" name="grade" id="inGrade" required>
-      <output for="inGrade"></output>
+    <label id="longitud">
+      <span>Longitud:</span>
+      <input class="form-control" type="text" name="longitud" required>
     </label>
   </div>
 
@@ -18,5 +28,3 @@
     <button class="btn btn-primary" type="submit">Create</button>
   </div>
 </form>
-
-<script type="text/javascript" src="/javascripts/gradeForm.js"></script>

@@ -1,7 +1,7 @@
-const inGrades = document.querySelector("#grade input"),
-  outGrades = document.querySelector("#grade output");
+const inreportes = document.querySelector("#grade input"),
+  outreportes = document.querySelector("#grade output");
 
-const updateGrade = () => (outGrades.textContent = inGrades.value);
+const updateGrade = () => (outreportes.textContent = inreportes.value);
 
-inGrades.addEventListener("input", updateGrade);
+inreportes.addEventListener("input", updateGrade);
 updateGrade();
