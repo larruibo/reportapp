@@ -1,14 +1,29 @@
 const formSearch = document.querySelector("#formSearch");
 
 const populatereportes = reportes => {
-  const reportesUl = document.querySelector("#reportes");
-  reportesUl.innerHTML = "";
+  const reportesDiv = document.querySelector("#reportes");
+  reportesDiv.innerHTML = "";
 
   reportes.forEach(g => {
-    const reporteLi = document.createElement("li");
-    reporteLi.textContent = `${g.date} : ${g.reporte} : ${g.violencia} : ${g.latitud} : ${g.longitud}`;
+    const reporteDiv = document.createElement("div");
+    if (g.violencia == "on") {
+      reporteDiv.classList.add("alert");
+      reporteDiv.classList.add("alert-danger");
+    } else {
+      reporteDiv.classList.add("alert");
+      reporteDiv.classList.add("alert-secondary");
+    }
+    const tit = document.createElement("h3");
+    const fecha = document.createElement("h5");
+    const cont = document.createElement("p");
+    tit.textContent = `${g.titulo}`;
+    fecha.textContent = `Fecha: ${g.date} : ${g.hora}`;
+    cont.textContent = `${g.reporte}`;
+    reporteDiv.appendChild(tit);
+    reporteDiv.appendChild(fecha);
+    reporteDiv.appendChild(cont);
 
-    reportesUl.appendChild(reporteLi);
+    reportesDiv.appendChild(reporteDiv);
   });
 };
 

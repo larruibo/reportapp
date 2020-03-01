@@ -1,15 +1,29 @@
 <form action="/reportes/create" method="POST" id="reporteForm">
   <div class="form-group">
+    <label class="form-group">
+      <label for="titulo">Titulo:</label>
+      <input class="form-control" type="text" name="titulo" required>
+    </label>
+  </div>
+  <div class="form-group">
     <label for="date">Fecha:</label>
-    <input type="date" id="date" name="date">
+    <input class ="form-control" type="date" id="date" name="date" required>
+  </div>
+  <div class="form-group">
+    <label for="hora">Hora:</label>
+    <input class ="form-control" type="text" id="hora" name="hora" placeholder="HH:MM" required>
+  </div>
     <div class="custom-control custom-switch">
       <input type="checkbox" name="violencia" class="custom-control-input" id="customSwitch1">
       <label class="custom-control-label" for="customSwitch1">¿Hubo violencia?</label>
     </div>
+  <div class="form-group">
   </div>
   <div class="form-group">
-    <span>Resumen de lo ocurrido:</span>
-    <textarea name="reporte" form="reporteForm">Ingrese aquí</textarea>
+    <label id="reporte">
+      <span>Resumen de lo ocurrido:</span>
+      <textarea name="reporte" form="reporteForm" required></textarea>
+    </label>
   </div>
   <div class="form-group">
     <label id="latitud">

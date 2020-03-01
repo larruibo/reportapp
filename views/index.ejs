@@ -31,14 +31,15 @@
               <button class="btn btn-secondary" type="submit">Search</button>
             </form>
           </div>
-          <ul id="reportes">
+          <div id="reportes">
             <% reportes.forEach( (reporte) => { %>
               <% if (reporte.violencia == "on") {%>
-                <li><%= reporte.date %> : <%= reporte.reporte %> : Hubo violencia : <%= reporte.latitud %> : <%= reporte.longitud %></li>
+
+                <div class="alert alert-danger" role="alert"> Fecha: <%= reporte.date %>  <%= reporte.hora %>. Titulo: <%= reporte.titulo %></div>
               <% } else { %>
-                <li><%= reporte.date %> : <%= reporte.reporte %> : <%= reporte.latitud %> : <%= reporte.longitud %></li>
+                <div class="alert alert-secondary" role="alert">Fecha: <%= reporte.date %> : <%= reporte.hora %>.  Titulo: <%= reporte.titulo %></div>
             <% }}) %>
-          </ul>
+          </div>
         </div>
         <!-- reportes -->
         <div class="col-12 col-md-4">

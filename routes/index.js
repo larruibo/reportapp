@@ -36,7 +36,9 @@ router.post("/reportes/create", (req, res) => {
   console.log("params", req.body);
 
   const reporte = {
+    titulo: req.body.titulo,
     date: req.body.date,
+    hora: req.body.hora,
     violencia: req.body.violencia,
     reporte: req.body.reporte,
     latitud: req.body.latitud,
