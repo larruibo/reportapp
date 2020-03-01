@@ -1,7 +1,23 @@
 var express = require("express");
 var router = express.Router();
+const app = express();
 
+const passport = require("passport");
+const initializePassport = require("./passport-config");
 const mu = require("../db/MongoUtils.js");
+const flash = require("express-flash");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+
+initializePassport(passport, email => mu.passport.findEmail(email));
+
+app.use(flash());
+app.use(
+  session({ secret: "cats", resave: "false", saveUninitialized: "false" })
+);
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 /* GET home page. */
 router.get("/", function(req, res, next) {
@@ -15,6 +31,35 @@ router.get("/", function(req, res, next) {
   );
 });
 
+/*Registro de usuario*/
+router.get("/register", (req, res) => {
+  res.render("register");
+});
+
+router.post("/register", (req, res) => {
+  mu.passport.register(req.body.name, req.body.email, req.body.password);
+});
+
+router.get("/usuarios", (req, res) => {
+  mu.passport.find().then(usuarios => res.json(usuarios));
+});
+
+router.get("/usuariosE", (req, res) => {
+  mu.passport.findEmail().then(usuarios => res.json(usuarios));
+});
+
+router.get("/login", function(req, res, next) {
+  res.render("login");
+});
+
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
+  })
+);
 // Data endpoint
 router.get("/reportes/:query", (req, res) => {
   console.log(req.params.query);
