@@ -8,11 +8,13 @@ router.get("/", function(req, res, next) {
   // const name = "Luis";
   // const template = `<h1> Holi ${name} !!! </h1>`;
   // res.send(template);
-  mu.reportes.find().then(reportes =>
-    res.render("index", {
-      reportes: reportes
-    })
-  );
+  mu.reportes.find().then(reportes => {
+    console.log(process.env.API_KEY);
+    return res.render("index", {
+      reportes: reportes,
+      api_key: process.env.API_KEY
+    });
+  });
 });
 
 // Data endpoint

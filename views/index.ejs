@@ -17,6 +17,12 @@
   <body>
     <div class="container">
       <div class="row">
+        <div class="col-12">
+          <h1>Reportapp</h1>
+          <div id="map"></div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-12 col-md-8">
           <h1>Reportes</h1>
           <div class="">
@@ -40,16 +46,13 @@
           <%- include("./create_form.ejs") %>
         </div>
         <!-- create -->
-        <div class="col-12 col-md 8">
-          <div id="map"></div>
-        </div>
       </div>
       <%- include("./footer.ejs") %>
     </div>
     <!-- container -->
     <script type="text/javascript" src="/javascripts/map.js"></script>
     <script type="text/javascript" src="javascripts/markerclusterer.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAC2OfxBhOnNTsmcyj2C2YU_wMeMdUlL84&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>&callback=initMap"
     async defer></script>
     <script type="text/javascript" src = "/javascripts/listReportes.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
