@@ -4,8 +4,8 @@ var passport = require("passport"),
 
 function MongoUtils() {
   const mu = {},
-    hostname = "localhost",
-    port = 27017,
+    hostname = process.env.DB_HOST,
+    port = process.env.DB_PORT,
     dbName = "reportapp",
     colName = "reportes";
 
@@ -21,7 +21,6 @@ function MongoUtils() {
       return reportesCol
         .find(query)
         .sort({ timestamp: -1 })
-        .limit(20)
         .toArray()
         .finally(() => client.close());
     });
