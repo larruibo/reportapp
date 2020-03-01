@@ -1,6 +1,6 @@
 LocalStrategy = require("passport-local").Strategy;
 
-async function initialize(passport, getUserByEmail) {
+function initialize(passport, getUserByEmail) {
   const authenticateUser = (email, password, done) => {
     const usuario = getUserByEmail(email).then(arreglo => {
       const user = arreglo[0];
@@ -9,7 +9,6 @@ async function initialize(passport, getUserByEmail) {
         return done(null, false);
       }
       if (user.password === password) {
-        console.log("holiii", user);
         return done(null, user);
       } else {
         return done(null, false);

@@ -40,6 +40,7 @@ router.get("/register", (req, res) => {
 
 router.post("/register", (req, res) => {
   mu.passport.register(req.body.name, req.body.email, req.body.password);
+  res.redirect("/");
 });
 
 router.get("/usuarios", (req, res) => {
@@ -47,7 +48,7 @@ router.get("/usuarios", (req, res) => {
 });
 
 router.get("/usuariosE", (req, res) => {
-  mu.passport.findEmail().then(usuarios => res.json(usuarios));
+  mu.passport.findEmail("w@w").then(usuarios => res.json(usuarios));
 });
 
 router.get("/login", function(req, res, next) {

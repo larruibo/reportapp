@@ -4,8 +4,8 @@ var passport = require("passport"),
 
 function MongoUtils() {
   const mu = {},
-    hostname = process.env.DB_HOST,
-    port = process.env.DB_PORT,
+    hostname = "localhost",
+    port = 27017,
     dbName = "reportapp",
     colName = "reportes";
 
