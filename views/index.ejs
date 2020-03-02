@@ -5,30 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 600px;
-      }
-      }
-    </style>
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="mapa row">
         <div class="col-12">
           <h1>Reportapp</h1>
+          <h3>Mapa en tiempo real con los reportes más recientes</h3>
           <div id="map"></div>
         </div>
       </div>
-      <div class="row">
+      <div class="reportes row">
         <div class="col-12 col-md-8">
           <h1>Reportes</h1>
           <div class="">
             <form id="formSearch">
-              <input type="text" class="form-control" placeholder="search">
-              <button class="btn btn-secondary" type="submit">Search</button>
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Ingrese una fecha">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-secondary" type="submit">Filtrar</button>
+              </div>
             </form>
           </div>
           <div id="reportes">
@@ -42,7 +39,7 @@
           </div>
         </div>
         <!-- reportes -->
-        <div class="col-12 col-md-4">
+        <div class="crear col-12 col-md-4">
           <h1>Crear Reporte</h1>
           <%- include("./create_form.ejs") %>
         </div>
@@ -52,6 +49,7 @@
     </div>
     <!-- container -->
     <script type="text/javascript" src="/javascripts/map.js"></script>
+    <script type="text/javascript" src ="/javascripts/geocoder.js" ></script>
     <script type="text/javascript" src="javascripts/markerclusterer.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>&callback=initMap"
     async defer></script>
