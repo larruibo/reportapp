@@ -4,16 +4,14 @@ var passport = require("passport"),
 
 function MongoUtils() {
   const mu = {},
-    hostname = "localhost",
-    port = 27017,
-    dbName = "reportapp",
+    dbName = "robos",
     colName = "reportes";
 
   mu.connect = () => {
     const pass = process.env.PASS;
     const client = new MongoClient(
       "mongodb+srv://sebas:" +
-        "sebas" +
+        pass +
         "@robos-slq5d.mongodb.net/test?retryWrites=true&w=majority"
     );
     return client.connect();
