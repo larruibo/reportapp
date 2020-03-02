@@ -4,7 +4,10 @@
     <title>Reportapp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -20,41 +23,60 @@
   </head>
   <body>
     <%- include("./navbar.ejs")%>
+
     <div class="container">
-      <div class="row">
+      <div id="mapaRow" class="mapa row">
         <div class="col-12">
-          <h1>Reportapp</h1>
+          <h3>Mapa en tiempo real:</h3>
+          <p>Con reportapp podrás observar en tiempo real los reportes que otras personas estén haciendo sobre hechos de inseguridad en la ciudad.</p>
           <div id="map"></div>
         </div>
       </div>
-      <div class="row">
+      <div id="reportesRow"class="reportes row">
         <div class="col-12 col-md-8">
           <h1>Reportes</h1>
-          <div class="">
-            <form id="formSearch">
-              <input type="text" class="form-control" placeholder="search">
-              <button class="btn btn-secondary" type="submit">Search</button>
-            </form>
+          <div class="row">
+            <div class="col-6">
+              <form id="formSearch">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Ingrese una fecha">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-secondary" type="submit">Filtrar</button>
+                </div>
+              </form>
+            </div>
+            <div class="col-6">
+              <form id="formSearch2">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Ingrese una palabra clave">
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-secondary" type="submit">Filtrar</button>
+                </div>
+              </form>
+            </div>
           </div>
-          <ul id="reportes">
+          <div id="reportes">
             <% reportes.forEach( (reporte) => { %>
               <% if (reporte.violencia == "on") {%>
-                <li><%= reporte.date %> : <%= reporte.reporte %> : Hubo violencia : <%= reporte.latitud %> : <%= reporte.longitud %></li>
+
+                <div class="alert alert-danger" role="alert"> Fecha: <%= reporte.date %>  <%= reporte.hora %>. Titulo: <%= reporte.titulo %></div>
               <% } else { %>
-                <li><%= reporte.date %> : <%= reporte.reporte %> : <%= reporte.latitud %> : <%= reporte.longitud %></li>
+                <div class="alert alert-info" role="alert">Fecha: <%= reporte.date %> : <%= reporte.hora %>.  Titulo: <%= reporte.titulo %></div>
             <% }}) %>
-          </ul>
+          </div>
         </div>
         <!-- reportes -->
-        <div class="col-12 col-md-4">
+        <div id="crear" class="crear col-12 col-md-4">
           <h1>Crear Reporte</h1>
           <%- include("./create_form.ejs") %>
         </div>
         <!-- create -->
       </div>
-      <%- include("./footer.ejs") %>
     </div>
     <!-- container -->
+    <%- include("./footer.ejs") %>
     <script type="text/javascript" src="/javascripts/map.js"></script>
     <script type="text/javascript" src="javascripts/markerclusterer.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<%= api_key %>&callback=initMap"

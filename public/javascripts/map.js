@@ -24,6 +24,10 @@ function initMap() {
   const mostrarMarkers = reportes => {
     reportes.forEach(reporte => {
       var cosito = {
+        date: reporte.date,
+        hora: reporte.hora,
+        titulo: reporte.titulo,
+        reporte: reporte.reporte,
         lat: parseFloat(reporte.latitud),
         lng: parseFloat(reporte.longitud)
       };
@@ -42,10 +46,30 @@ function initMap() {
   // Add a marker clusterer to manage the markers.
   const hacerMarkerClusterer = () => {
     var markers = locations2.map(function(location, i) {
-      return new google.maps.Marker({
-        position: location,
+      var contentString =
+        '<div id="content">' +
+        '<div id="siteNotice">' +
+        "</div>" +
+        `<h3>${location.titulo}</h3>` +
+        '<div id="bodyContent">' +
+        `<h5>${location.date}:${location.hora}</h5>. <p>${location.reporte}</p> ` +
+        "</div>" +
+        "</div>";
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      var mark = { lat: location.lat, lng: location.lng };
+      var marker = new google.maps.Marker({
+        position: mark,
         label: labels[i % labels.length]
       });
+
+      marker.addListener("click", function() {
+        infowindow.open(map, marker);
+      });
+
+      return marker;
     });
 
     var markerCluster = new MarkerClusterer(map, markers, {
@@ -84,8 +108,13 @@ function initMap() {
           lng: position.coords.longitude
         };
 
+        var inLa = document.getElementById("inLatitud");
+        inLa.value = position.coords.latitude;
+        var inLn = document.getElementById("inLongitud");
+        inLn.value = position.coords.longitude;
+
         infoWindow.setPosition(pos);
-        infoWindow.setContent("Location found.");
+        infoWindow.setContent("Tu ubicación");
         infoWindow.open(map);
         map.setCenter(pos);
       },
@@ -97,6 +126,41 @@ function initMap() {
     // Browser doesn't support Geolocation
     handleLocationError(false, infoWindow, map.getCenter());
   }
+
+  //Geocoder to translate addresses to lat-lng
+  var geocoder = new google.maps.Geocoder();
+
+  document.getElementById("submitGeo").addEventListener("click", function() {
+    geocodeAddress(geocoder, map, 2);
+  });
+
+  document.getElementById("submitNavbar").addEventListener("click", function() {
+    geocodeAddress(geocoder, map, 1);
+  });
+}
+
+function geocodeAddress(geocoder, resultsMap, numero) {
+  if (numero == 2) {
+    var address = document.getElementById("address").value;
+  } else {
+    var address = document.getElementById("addressNavbar").value;
+  }
+  geocoder.geocode({ address: address }, function(results, status) {
+    if (status === "OK") {
+      resultsMap.setCenter(results[0].geometry.location);
+      //Change the input's values in form
+      var inLa = document.getElementById("inLatitud");
+      inLa.value = results[0].geometry.location.lat();
+      var inLn = document.getElementById("inLongitud");
+      inLn.value = results[0].geometry.location.lng();
+      var marker = new google.maps.Marker({
+        map: resultsMap,
+        position: results[0].geometry.location
+      });
+    } else {
+      alert("No se pudo realizar la Geocodificación: " + status);
+    }
+  });
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
