@@ -1,6 +1,11 @@
+//This js file let us modify the DOM depending on the user's input.
+//Filter the reports by date or by keyword
+
+//Get the form elements
 const formSearch = document.querySelector("#formSearch");
 const formSearch2 = document.querySelector("#formSearch2");
 
+//Receive the reports and render the results
 const populatereportes = reportes => {
   const reportesDiv = document.querySelector("#reportes");
   reportesDiv.innerHTML = "";
@@ -28,6 +33,7 @@ const populatereportes = reportes => {
   });
 };
 
+//Function that fetchs the reports from an Endpoint
 const onSearch = evt => {
   const query = document.querySelector("#formSearch input").value;
 
@@ -44,5 +50,7 @@ const onSearch2 = evt => {
     .then(populatereportes);
   evt.preventDefault();
 };
+
+//Button's Listener
 formSearch.addEventListener("submit", onSearch);
 formSearch2.addEventListener("submit", onSearch2);

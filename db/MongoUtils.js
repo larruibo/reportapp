@@ -2,19 +2,22 @@ const MongoClient = require("mongodb").MongoClient;
 var passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
 
+//Use of env variables
 function MongoUtils() {
   const mu = {},
-    hostname = "localhost",
-    port = 27017,
-    dbName = "reportapp",
-    colName = "reportes";
+    hostname = process.env.DB_HOST,
+    port = process.env.DB_PORT,
+    dbName = process.env.DB_NAME,
+    colName = process.env.DB_COL;
 
+  //Connect to DB
   mu.connect = () => {
     const client = new MongoClient(`mongodb://${hostname}:${port}`);
     return client.connect();
   };
   mu.reportes = {};
 
+  //Find documents in DB
   mu.reportes.find = query =>
     mu.connect().then(client => {
       const reportesCol = client.db(dbName).collection(colName);
@@ -25,6 +28,7 @@ function MongoUtils() {
         .finally(() => client.close());
     });
 
+  //Insert documents in DB
   mu.reportes.insert = grade =>
     mu.connect().then(client => {
       const reportesCol = client.db(dbName).collection(colName);

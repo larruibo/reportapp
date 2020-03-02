@@ -3,28 +3,25 @@
   <head>
     <title>Reportapp</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Reportapp permite ver en tiempo real, observar en el mapa, crear y filtrar, hechos de inseguridad registrados en tu ciudad.">
+    <meta name="keywords" content="Reportes, Inseguridad, Mapa, Tiempo Real, Crear, Filtrar">
+    <meta name="author" content="Luis Ruiz - Sebastián Martinez">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 600px;
-      }
-      }
-    </style>
   </head>
   <body>
+    <!-- Navbar -->
     <%- include("./navbar.ejs")%>
 
+    <!-- Container with the info -->
     <div class="container">
+      <!-- Map -->
       <div id="mapaRow" class="mapa row">
         <div class="col-12">
           <h3>Mapa en tiempo real:</h3>
@@ -32,11 +29,14 @@
           <div id="map"></div>
         </div>
       </div>
+      <!-- Reports and create -->
       <div id="reportesRow"class="reportes row">
         <div class="col-12 col-md-8">
+          <!-- Reports -->
           <h1>Reportes</h1>
           <div class="row">
             <div class="col-6">
+              <!-- Search form date -->
               <form id="formSearch">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Ingrese una fecha">
@@ -47,6 +47,7 @@
               </form>
             </div>
             <div class="col-6">
+              <!-- Search form keyword -->
               <form id="formSearch2">
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Ingrese una palabra clave">
@@ -67,15 +68,14 @@
             <% }}) %>
           </div>
         </div>
-        <!-- reportes -->
+        <!-- Create -->
         <div id="crear" class="crear col-12 col-md-4">
           <h1>Crear Reporte</h1>
           <%- include("./create_form.ejs") %>
         </div>
-        <!-- create -->
       </div>
     </div>
-    <!-- container -->
+    <!-- footer -->
     <%- include("./footer.ejs") %>
     <script type="text/javascript" src="/javascripts/map.js"></script>
     <script type="text/javascript" src="javascripts/markerclusterer.js"></script>
