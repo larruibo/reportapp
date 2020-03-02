@@ -50,4 +50,4 @@ Luis Ruis y Sebastian Martinez
 
 -----------------------------------------------------------
 # Licencia
-Para el proyecto se utilizo la sieguiente licencia [Licencia](https://raw.githubusercontent.com/larruibo/reportapp/master/LICENSE)
+Para el proyecto se utilizo la sieguiente licencia [MIT Licence](https://raw.githubusercontent.com/larruibo/reportapp/master/LICENSE)
