@@ -1,24 +1,8 @@
 var express = require("express");
 var router = express.Router();
-const app = express();
 
-const passport = require("passport");
-const initializePassport = require("./passport-config");
 const mu = require("../db/MongoUtils.js");
-const flash = require("express-flash");
-const session = require("express-session");
-const bodyParser = require("body-parser");
-
-initializePassport(passport, email => mu.passport.findEmail(email));
-
-app.use(flash());
-app.use(
-  session({ secret: "cats", resave: "false", saveUninitialized: "false" })
-);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(passport.initialize());
-app.use(passport.session());
-
+var passport = require("passport");
 /* GET home page. */
 router.get("/", function(req, res, next) {
   // const name = "Luis";
@@ -59,7 +43,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/",
-    failureRedirect: "/login",
+    failureRedirect: "/",
     failureFlash: true
   })
 );
