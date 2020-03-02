@@ -26,6 +26,15 @@ router.get("/reportes/:query", (req, res) => {
   mu.reportes.find(query).then(reportes => res.json(reportes));
 });
 
+// Data endpoint
+router.get("/reportes/palabra/:query", (req, res) => {
+  console.log(req.params.query);
+  const query = {
+    titulo: new RegExp(`.*${req.params.query}.*`, "i")
+  };
+  mu.reportes.find(query).then(reportes => res.json(reportes));
+});
+
 //Data endopint
 router.get("/reportes", (req, res) => {
   mu.reportes.find().then(reportes => res.json(reportes));

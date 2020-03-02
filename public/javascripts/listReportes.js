@@ -1,4 +1,5 @@
 const formSearch = document.querySelector("#formSearch");
+const formSearch2 = document.querySelector("#formSearch2");
 
 const populatereportes = reportes => {
   const reportesDiv = document.querySelector("#reportes");
@@ -11,7 +12,7 @@ const populatereportes = reportes => {
       reporteDiv.classList.add("alert-danger");
     } else {
       reporteDiv.classList.add("alert");
-      reporteDiv.classList.add("alert-secondary");
+      reporteDiv.classList.add("alert-info");
     }
     const tit = document.createElement("h3");
     const fecha = document.createElement("h5");
@@ -35,4 +36,13 @@ const onSearch = evt => {
     .then(populatereportes);
   evt.preventDefault();
 };
+const onSearch2 = evt => {
+  const query = document.querySelector("#formSearch2 input").value;
+
+  fetch(`/reportes/palabra/${query}`)
+    .then(res => res.json())
+    .then(populatereportes);
+  evt.preventDefault();
+};
 formSearch.addEventListener("submit", onSearch);
+formSearch2.addEventListener("submit", onSearch2);

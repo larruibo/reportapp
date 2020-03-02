@@ -108,6 +108,11 @@ function initMap() {
           lng: position.coords.longitude
         };
 
+        var inLa = document.getElementById("inLatitud");
+        inLa.value = position.coords.latitude;
+        var inLn = document.getElementById("inLongitud");
+        inLn.value = position.coords.longitude;
+
         infoWindow.setPosition(pos);
         infoWindow.setContent("Tu ubicación");
         infoWindow.open(map);
@@ -126,12 +131,20 @@ function initMap() {
   var geocoder = new google.maps.Geocoder();
 
   document.getElementById("submitGeo").addEventListener("click", function() {
-    geocodeAddress(geocoder, map);
+    geocodeAddress(geocoder, map, 2);
+  });
+
+  document.getElementById("submitNavbar").addEventListener("click", function() {
+    geocodeAddress(geocoder, map, 1);
   });
 }
 
-function geocodeAddress(geocoder, resultsMap) {
-  var address = document.getElementById("address").value;
+function geocodeAddress(geocoder, resultsMap, numero) {
+  if (numero == 2) {
+    var address = document.getElementById("address").value;
+  } else {
+    var address = document.getElementById("addressNavbar").value;
+  }
   geocoder.geocode({ address: address }, function(results, status) {
     if (status === "OK") {
       resultsMap.setCenter(results[0].geometry.location);
@@ -145,7 +158,7 @@ function geocodeAddress(geocoder, resultsMap) {
         position: results[0].geometry.location
       });
     } else {
-      alert("Geocode was not successful for the following reason: " + status);
+      alert("No se pudo realizar la Geocodificación: " + status);
     }
   });
 }
