@@ -6,11 +6,13 @@ function MongoUtils() {
   const mu = {},
     hostname = "localhost",
     port = 27017,
-    dbName = "reportapp",
+    dbName = "robos",
     colName = "reportes";
 
   mu.connect = () => {
-    const client = new MongoClient(`mongodb://${hostname}:${port}`);
+    const client = new MongoClient(
+      "mongodb+srv://sebas:sebas@robos-slq5d.mongodb.net/test?retryWrites=true&w=majority"
+    );
     return client.connect();
   };
   mu.reportes = {};
