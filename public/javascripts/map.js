@@ -1,5 +1,8 @@
 // Code retreived from Google API, with some modifications
 
+// antoine noreau: The map is responsive, and it seems you handled and understood very well the Google Maps API. 
+// antoine noreau: Easy to navigate, and the Geolocation service error is indeed linked to authorizing location from browser, great tip here.
+
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
