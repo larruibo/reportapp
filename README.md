@@ -48,4 +48,4 @@ Luis Ruis y Sebastian Martinez
 
 -----------------------------------------------------------
 # Licencia
-
+[Licencia](https://raw.githubusercontent.com/larruibo/reportapp/master/LICENSE)
