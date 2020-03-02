@@ -13,7 +13,7 @@ function MongoUtils() {
     const pass = process.env.PASS;
     const client = new MongoClient(
       "mongodb+srv://sebas:" +
-        PASS +
+        pass +
         "@robos-slq5d.mongodb.net/test?retryWrites=true&w=majority"
     );
     return client.connect();
