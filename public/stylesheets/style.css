@@ -32,7 +32,7 @@ textarea {
   resize: none;
 }
 .footer {
-  background-color: #343a40;
+  background-color: #2f0062;
   color: white;
 }
 .footer .blanco {
@@ -58,4 +58,8 @@ textarea {
   margin-bottom: 5%;
   padding-left: 4%;
   padding-right: 4%;
+}
+
+#navbar {
+  background-color: #2f0062 !important;
 }
