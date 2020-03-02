@@ -1,3 +1,5 @@
+// antoine noreau: Not much to comment except, maybe add { useUnifiedTopology: true } to the MongoClient constructor in the mu.connect function
+
 const MongoClient = require("mongodb").MongoClient;
 var passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
