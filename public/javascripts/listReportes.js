@@ -1,6 +1,8 @@
 //This js file let us modify the DOM depending on the user's input.
 //Filter the reports by date or by keyword
 
+// antoine noreau: The date and keyword filters work very well, quick and responsive. Would be cool to add a date range feature.
+
 //Get the form elements
 const formSearch = document.querySelector("#formSearch");
 const formSearch2 = document.querySelector("#formSearch2");
