@@ -1,29 +1,39 @@
 <form action="/reportes/create" method="POST" id="reporteForm">
   <div class="form-group">
+      <label for="titulo">Titulo:</label>
+      <input class="form-control" type="text" name="titulo" required>
+  </div>
+  <div class="form-group">
     <label for="date">Fecha:</label>
-    <input type="date" id="date" name="date">
+    <input class ="form-control" type="date" id="date" name="date" required>
+  </div>
+  <div class="form-group">
+    <label for="hora">Hora:</label>
+    <input class ="form-control" type="text" id="hora" name="hora" placeholder="HH:MM" required>
+  </div>
     <div class="custom-control custom-switch">
       <input type="checkbox" name="violencia" class="custom-control-input" id="customSwitch1">
       <label class="custom-control-label" for="customSwitch1">¿Hubo violencia?</label>
     </div>
+  <div class="form-group">
+      <textarea name="reporte" form="reporteForm" placeholder="Resumen de lo ocurrido:" required></textarea>
+  </div>
+  <div id="floating-panel">
+    <div class="form-group">
+      <input class ="form-control" id="address" type="textbox" placeholder="Ingrese una dirección">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-secondary" id="submitGeo" type="button">Geocode</button>
+    </div>
   </div>
   <div class="form-group">
-    <span>Resumen de lo ocurrido:</span>
-    <textarea name="reporte" form="reporteForm">Ingrese aquí</textarea>
+      <label id="latitud">Latitud:</label>
+      <input id="inLatitud" class="form-control" type="text" name="latitud" required >
   </div>
   <div class="form-group">
-    <label id="latitud">
-      <span>Latitud:</span>
-      <input class="form-control" type="text" name="latitud" required>
-    </label>
+      <label id="longitud">Longitud:</label>
+      <input id="inLongitud"class="form-control" type="text" name="longitud" required >
   </div>
-  <div class="form-group">
-    <label id="longitud">
-      <span>Longitud:</span>
-      <input class="form-control" type="text" name="longitud" required>
-    </label>
-  </div>
-
   <div class="form-group">
     <button class="btn btn-primary" type="submit">Create</button>
   </div>
