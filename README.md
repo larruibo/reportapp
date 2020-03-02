@@ -1,3 +1,6 @@
+<!-- antoine noreau: In general good, could have more details on how to setup your Mongo database (hostname, ports)  -->
+<!-- antoine noreau: As well, could have an example on how to launch using nodemon or npm (not yarn)  -->
+
 # Reportapp
 
 Reportapp es una pagina web que tiene como finalidad reportar los lugares donde los robos suceden mas frecuentemente, esto con la finalidad de que todos los que visitan la pagina puedan estar precavidos al momento de visitar ciertos sectores de la cuidad.
