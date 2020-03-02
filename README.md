@@ -2,6 +2,8 @@
 
 Reportapp es una pagina web que tiene como finalidad reportar los lugares donde los robos suceden mas frecuentemente, esto con la finalidad de que todos los que visitan la pagina puedan estar precavidos al momento de visitar ciertos sectores de la cuidad.
 
+![Screen shot](https://raw.githubusercontent.com/larruibo/reportapp/master/public/images/screen%20proyecto%202_opt.png)
+
 ------------------------------------------------------------------------------
 # Correo la pagina Web
 Para correr la aplicacion localmente se necesita tener instalados estos complementos.
