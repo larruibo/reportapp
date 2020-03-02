@@ -1,3 +1,5 @@
+// Code retreived from Google API, with some modifications
+
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
@@ -88,7 +90,7 @@ function initMap() {
 
   getLocations();
 
-  // Code retreived from Google API
+  // Create the map
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 4.686972, lng: -74.057049 },
     zoom: 14
@@ -139,6 +141,7 @@ function initMap() {
   });
 }
 
+//Function that geocodifies the values and change the DOM if necessary
 function geocodeAddress(geocoder, resultsMap, numero) {
   if (numero == 2) {
     var address = document.getElementById("address").value;

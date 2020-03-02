@@ -2,11 +2,13 @@ const MongoClient = require("mongodb").MongoClient;
 var passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy;
 
+//Use of env variables
 function MongoUtils() {
   const mu = {},
     dbName = "robos",
     colName = "reportes";
 
+  //Connect to DB
   mu.connect = () => {
     const pass = process.env.PASS;
     const client = new MongoClient(
@@ -18,6 +20,7 @@ function MongoUtils() {
   };
   mu.reportes = {};
 
+  //Find documents in DB
   mu.reportes.find = query =>
     mu.connect().then(client => {
       const reportesCol = client.db(dbName).collection(colName);
@@ -28,6 +31,7 @@ function MongoUtils() {
         .finally(() => client.close());
     });
 
+  //Insert documents in DB
   mu.reportes.insert = grade =>
     mu.connect().then(client => {
       const reportesCol = client.db(dbName).collection(colName);
