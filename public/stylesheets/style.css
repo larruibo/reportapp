@@ -1,3 +1,5 @@
+/*-- Mariana Rodríguez : good css use. You could add some comments that separate the sheet into different sections 
+(like general styling, map, form, etc). However, since this is a short file, it might not be that necessary. -*/
 body {
   font-family: "Lato";
 }
