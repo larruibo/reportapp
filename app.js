@@ -18,6 +18,7 @@ var app = express();
 initializePassport(passport, email => mu.passport.findEmail(email));
 
 app.use(flash());
+/* Mariana Rodríguez: this key should be stronger and not hard coded here. */
 app.use(
   session({ secret: "cats", resave: "false", saveUninitialized: "false" })
 );
