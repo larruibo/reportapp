@@ -17,6 +17,19 @@ router.get("/", function(req, res, next) {
   });
 });
 
+
+/* Mariana Rodríguez: you could modularize and separate this file into different files. 
+For example, use one for all routes related to authentication (login, register,...) and 
+one for all routes related to the 'reportes' element. Also, you can use middleware to configure
+that some routes are only accessed if the user is (or isn't) logged in. */
+
+const ensureNotAuthenticated = (req, res, next) => {
+  if (!req.isAuthenticated()) return next();
+  req.session.error = "You are already logged in!";
+  res.redirect("/");
+};
+
+
 /*Registro de usuario*/
 router.get("/register", (req, res) => {
   res.render("register");
@@ -35,7 +48,8 @@ router.get("/usuariosE", (req, res) => {
   mu.passport.findEmail("w@w").then(usuarios => res.json(usuarios));
 });
 
-router.get("/login", function(req, res, next) {
+router.get("/login", ensureNotAuthenticated,
+  function(req, res, next) {
   res.render("login");
 });
 
@@ -47,7 +61,9 @@ router.post(
     failureFlash: true
   })
 );
-// Data endpoint
+
+/* Mariana Rodríguez: Deleted unnecessary comments. Comments explaining each method would be more useful. */
+// Data endpoints
 router.get("/reportes/:query", (req, res) => {
   console.log(req.params.query);
   const query = {
@@ -56,7 +72,6 @@ router.get("/reportes/:query", (req, res) => {
   mu.reportes.find(query).then(reportes => res.json(reportes));
 });
 
-// Data endpoint
 router.get("/reportes/palabra/:query", (req, res) => {
   console.log(req.params.query);
   const query = {
@@ -65,12 +80,10 @@ router.get("/reportes/palabra/:query", (req, res) => {
   mu.reportes.find(query).then(reportes => res.json(reportes));
 });
 
-//Data endopint
 router.get("/reportes", (req, res) => {
   mu.reportes.find().then(reportes => res.json(reportes));
 });
 
-// Data endpoint
 router.post("/reportes/create", (req, res) => {
   console.log("params", req.body);
 
